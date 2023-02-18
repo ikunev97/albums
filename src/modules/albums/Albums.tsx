@@ -21,7 +21,7 @@ export const Albums = () => {
   const albums = useSelector(selectAlbums);
   const isLoading = useSelector(selectIsLoading);
 
-  if (isLoading) return <Loading />;
+  if (!isLoading) return <Loading />;
 
   return (
     <>

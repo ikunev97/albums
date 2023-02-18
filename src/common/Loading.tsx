@@ -15,10 +15,12 @@ const Spinner = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
-  top: 35%;
-  left: 50%;
-  right: -50%;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  position: fixed;
   border-top: 8px solid #c0e1f2;
   border-right: 8px solid #c0e1f2;
   border-bottom: 8px solid #c0e1f2;
