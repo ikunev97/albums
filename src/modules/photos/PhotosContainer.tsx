@@ -9,7 +9,7 @@ import {
 } from "../../redux/selectors/PhotosSelector";
 import { selectAlbums } from "../../redux/selectors/AlbumsSelector";
 import { AppDispatch } from "../../redux/store";
-import Photo from "./components/Photo";
+import Photo from "../../common/Photo";
 import { IPhoto } from "../../types";
 import { PhotoActions } from "./components/PhotoActions";
 import {
@@ -38,29 +38,23 @@ export const PhotosContainer = () => {
   if (isLoading) return <Loading />;
   return (
     <>
-      {albumId && (
-        <>
-          <PhotoActions albumId={id} albumsLength={albumsLength} />
-          <Wrapper>
-            {photos.map((item: IPhoto) => {
-              const isFavouriteItem = favourites.some(
-                (favourite) => favourite.id === item.id
-              );
-              return (
-                <Photo
-                  key={item.id}
-                  isFavouriteItem={isFavouriteItem}
-                  photoItem={item}
-                  addToFavourites={() => dispatch(addToFavourites(item))}
-                  removeFromFavourites={() =>
-                    dispatch(removeFromFavourites(item))
-                  }
-                />
-              );
-            })}
-          </Wrapper>
-        </>
-      )}
+      <PhotoActions albumId={id} albumsLength={albumsLength} />
+      <Wrapper>
+        {photos.map((item: IPhoto) => {
+          const isFavouriteItem = favourites.some(
+            (favourite) => favourite.id === item.id
+          );
+          return (
+            <Photo
+              key={item.id}
+              isFavouriteItem={isFavouriteItem}
+              photoItem={item}
+              addToFavourites={() => dispatch(addToFavourites(item))}
+              removeFromFavourites={() => dispatch(removeFromFavourites(item))}
+            />
+          );
+        })}
+      </Wrapper>
     </>
   );
 };

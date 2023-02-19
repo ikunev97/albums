@@ -7,7 +7,8 @@ import {
 } from "../../redux/selectors/AlbumsSelector";
 import { AppDispatch } from "../../redux/store";
 import { getAlbums } from "../../services/AlbumsService";
-import { AlbumsTitle, AlbumsWrapper, Button } from "./AlbumsStyle";
+import { AlbumsWrapper } from "./AlbumsStyle";
+import { Button, Title } from "../../common/CommonStyles";
 import { Loading } from "../../common/Loading";
 
 export const Albums = () => {
@@ -25,7 +26,7 @@ export const Albums = () => {
 
   return (
     <>
-      <AlbumsTitle>Albums:</AlbumsTitle>
+      <Title style={{ textAlign: "left" }}>Albums:</Title>
       <AlbumsWrapper>
         {Object.entries(albums).map(([key]) => {
           return (

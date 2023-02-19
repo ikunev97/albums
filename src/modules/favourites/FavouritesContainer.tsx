@@ -2,14 +2,14 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { selectFavourites } from "../../redux/selectors/PhotosSelector";
 import { AppDispatch } from "../../redux/store";
-import Photo from "../photos/components/Photo";
+import Photo from "../../common/Photo";
 import { IPhoto } from "../../types";
 import {
   addToFavourites,
   removeFromFavourites,
 } from "../../redux/slices/PhotosSlice";
-import { Title, Wrapper } from "../photos/styles/PhotoStyle";
-import { Button } from "../albums/AlbumsStyle";
+import { Button, Title } from "../../common/CommonStyles";
+import { FavouritesWrapper } from "./styles/FavouritesStyles";
 
 export const FavouritesContainer = () => {
   const navigate = useNavigate();
@@ -19,7 +19,7 @@ export const FavouritesContainer = () => {
   return (
     <>
       {favourites.length > 0 ? (
-        <Wrapper>
+        <FavouritesWrapper>
           {favourites.map((item: IPhoto) => {
             return (
               <Photo
@@ -32,7 +32,7 @@ export const FavouritesContainer = () => {
               />
             );
           })}
-        </Wrapper>
+        </FavouritesWrapper>
       ) : (
         <div>
           <Title>No favourite photos</Title>

@@ -11,7 +11,9 @@ export const getAlbums = (): AppThunk => async (dispatch) => {
       dispatch(setLoading(false));
       dispatch(setItems(response.data));
     }
-  } catch (error) {
-    dispatch(setError(error));
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      dispatch(setError(error.message));
+    }
   }
 };

@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import { Button } from "../../albums/AlbumsStyle";
-import { AlbumActions, Title } from "../styles/PhotoStyle";
+import { Button } from "../../../common/CommonStyles";
+import { AlbumActions } from "../styles/PhotoStyle";
+import { Title } from "../../../common/CommonStyles";
 
 type IPhotoActions = {
   albumId: number;
@@ -14,7 +15,7 @@ export const PhotoActions = ({ albumId, albumsLength }: IPhotoActions) => {
     <AlbumActions>
       {albumId === 1 ? (
         <Button width="100px" height="25px" onClick={() => navigate(`/`)}>
-          ALL ALBUMS
+          ALBUMS
         </Button>
       ) : (
         <Button

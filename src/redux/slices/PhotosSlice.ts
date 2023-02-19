@@ -1,14 +1,14 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IPhoto } from "../../types";
 
-export type AlbumsState = {
+export type PhotosState = {
   photos: IPhoto[];
   isLoading: boolean;
   hasError: string;
   favourites: IPhoto[];
 };
 
-const initialState: AlbumsState = {
+const initialState: PhotosState = {
   photos: [],
   isLoading: false,
   hasError: "",
@@ -19,24 +19,24 @@ const photosSlice = createSlice({
   name: "photos",
   initialState,
   reducers: {
-    setLoading: (state, { payload }) => {
-      state.isLoading = payload;
+    setLoading: (state, action: PayloadAction<boolean>) => {
+      state.isLoading = action.payload;
     },
-    setItems: (state, { payload }) => {
+    setItems: (state, action: PayloadAction<IPhoto[]>) => {
       state.isLoading = false;
       state.hasError = "";
-      state.photos = payload;
+      state.photos = action.payload;
     },
-    addToFavourites: (state, { payload }) => {
-      state.favourites.push(payload);
+    addToFavourites: (state, action: PayloadAction<IPhoto>) => {
+      state.favourites.push(action.payload);
     },
-    removeFromFavourites: (state, { payload }) => {
+    removeFromFavourites: (state, action: PayloadAction<IPhoto>) => {
       state.favourites = state.favourites.filter(
-        (item) => item.id !== payload.id
+        (item) => item.id !== action.payload.id
       );
     },
-    setError: (state, { payload }) => {
-      state.hasError = payload;
+    setError: (state, action: PayloadAction<string>) => {
+      state.hasError = action.payload;
     },
   },
 });

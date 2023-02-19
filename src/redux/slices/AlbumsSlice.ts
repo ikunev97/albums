@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IPhoto } from "../../types";
 
 export type ResultType = {
@@ -21,13 +21,13 @@ const albumsSlice = createSlice({
   name: "albums",
   initialState,
   reducers: {
-    setLoading: (state, { payload }) => {
-      state.isLoading = payload;
+    setLoading: (state, action: PayloadAction<boolean>) => {
+      state.isLoading = action.payload;
     },
-    setItems: (state, { payload }) => {
+    setItems: (state, action: PayloadAction<IPhoto[]>) => {
       const groupBy = "albumId";
 
-      const groupedAlbums = payload.reduce(
+      const groupedAlbums = action.payload.reduce(
         (result: ResultType, photo: IPhoto) => {
           (result[photo[groupBy]] = result[photo[groupBy]] || []).push(photo);
           return result;
@@ -39,8 +39,8 @@ const albumsSlice = createSlice({
       state.hasError = "";
       state.albums = groupedAlbums;
     },
-    setError: (state, { payload }) => {
-      state.hasError = payload;
+    setError: (state, action: PayloadAction<string>) => {
+      state.hasError = action.payload;
     },
   },
 });
